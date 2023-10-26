@@ -2,6 +2,8 @@ package com.jpql.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,7 @@ public class CandidatServiceimpl implements CandidatService {
 	
 
 	@Override
+	@Transactional
 	public List<Candidat> getAllCandidats() {
 		// TODO Auto-generated method stub
 		return candidatRepository.findAll();

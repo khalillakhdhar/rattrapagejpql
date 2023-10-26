@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -38,7 +39,10 @@ private int duree;
 	@ManyToOne(fetch = FetchType.LAZY,optional = true)
 	private Formateur formateur;
 	
-	@ManyToMany(mappedBy = "formations",fetch = FetchType.LAZY)
+	@ManyToMany(mappedBy = "formations",fetch = FetchType.EAGER,cascade = {
+			CascadeType.MERGE,
+			CascadeType.PERSIST
+	})
 	@JsonBackReference
 	private Set<Candidat> candidats=new HashSet<Candidat>();
 

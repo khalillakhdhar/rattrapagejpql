@@ -33,10 +33,14 @@ public class RattrapagejpqlApplication implements CommandLineRunner {
 		Formation f1=new Formation("spring boot", "aucune", "url", 90, null, null);
 		Formation formation1= formationApi.saveOneFormation(f1);
 		Set<Formation> forms=new HashSet<Formation>();
+		Set<Formation> formations=new HashSet<Formation>();
 		forms.add(formation1);
 		Candidat c1=new Candidat("test","teste", 30, "test@gmail.com","ok","20999333", forms);
 		candidatApi.saveOneCandidat(c1);
-		//candidatApi.getAllCandidats().forEach(System.out::println);
+		candidatApi.getAllCandidats().forEach(c->
+		{
+			c.getFormations().forEach(System.out::println);
+		});
 		//formationApi.getAllFormations().forEach(System.out::println);
 		
 	}
